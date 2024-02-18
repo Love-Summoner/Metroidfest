@@ -10,7 +10,7 @@ public class PlayerScript : MonoBehaviour
     public bool grounded;
     
 
-    // Update is called once per frame
+    // Update is called once per frame.
     void Update()
     {
         move = Input.GetAxisRaw("Horizontal");

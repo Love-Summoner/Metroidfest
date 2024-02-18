@@ -1,41 +1,58 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Sight : MonoBehaviour
 {
-    Ray2D ray, lowerRay;
-    RaycastHit2D hit, hit2;
+    Ray2D ray;
+    RaycastHit2D hit;
     [SerializeField] private Collider2D cone;
+    private float angle = -11.303f * Mathf.PI/180;
+    private float base_angle = -11.303f * Mathf.PI / 180;
 
     public LayerMask hittable;
+    public LayerMask play_layer;
     // Start is called before the first frame update
     void Start()
     {
-        ray = new Ray2D(transform.position, new Vector3(-Mathf.Cos(22.5f), -Mathf.Sin(22.5f), 0));
-        lowerRay = new Ray2D(transform.position, new Vector3(-Mathf.Cos(-22.5f), -Mathf.Sin(-22.5f), 0));
-        checkforObject();
+
+        ray = new Ray2D(new Vector2(transform.position.x, transform.position.y+.5f), new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)));
+        UnityEngine.Debug.Log(ray.direction);
     }
 
     private void checkforObject()
     {
         hit = Physics2D.Raycast(ray.origin, ray.direction, 10, hittable);
-        hit2 = Physics2D.Raycast(lowerRay.origin, lowerRay.direction, 10, hittable);
-        if (hit)
+       if(hit && hit.collider.gameObject.name == "Player")
         {
-            Debug.Log("It hit" + hit.collider.name);
+            UnityEngine.Debug.Log("Can see player");
         }
-        else if (hit2)
+        angle += .1f;
+        if(angle > -base_angle)
         {
-            Debug.Log("It hit" + hit2.collider.name);
+            angle = base_angle;
         }
     }
     private void Update()
     {
-        ray = new Ray2D(transform.position, ray.direction);
-        lowerRay = new Ray2D(transform.position, lowerRay.direction);
-        checkforObject();
-        Debug.DrawRay(ray.origin, ray.direction, Color.red);
-        Debug.DrawRay(lowerRay.origin, lowerRay.direction, Color.red);
+        ray = new Ray2D(new Vector2(transform.position.x, transform.position.y+.5f), new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)));
+
+        if(player_in_range())
+            checkforObject();
+        Vector2 test = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+
+        UnityEngine.Debug.DrawRay(ray.origin, ray.direction, Color.red);
+    }
+
+    private bool player_in_range()
+    {
+        if (cone.IsTouchingLayers(play_layer))
+        {
+            return true;
+        }
+        return false;
     }
 }

@@ -27,6 +27,8 @@ public class Sight : MonoBehaviour
 
     private State state = State.IDLE;
     private GameObject player;
+    private bool sees_player = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +38,10 @@ public class Sight : MonoBehaviour
     }
     private void Update()
     {
+        if (state == State.LOCKED_ON)
+            sees_player = true;
+        else
+            sees_player = false;
         switch (state)
         {
             case State.IDLE:
@@ -199,5 +205,9 @@ public class Sight : MonoBehaviour
             return true;
         }
         return false;
+    }
+    public bool get_sees_player()
+    {
+        return sees_player;
     }
 }

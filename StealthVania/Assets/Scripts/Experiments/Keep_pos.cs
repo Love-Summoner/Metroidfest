@@ -5,11 +5,9 @@ using UnityEngine.UIElements;
 
 public class Keep_pos : MonoBehaviour
 {
-    [SerializeField] private Transform Enemy_loc;
-
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector2(Enemy_loc.position.x, Enemy_loc.position.y+.5f);
+        transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
     }
 }

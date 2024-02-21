@@ -7,15 +7,18 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 
-enum State
-{
-    IDLE,
-    SCANNING,
-    LOCKED_ON,
-    SEARCH
-}
+
 public class Sight : MonoBehaviour
 {
+    enum State
+    {
+        IDLE,
+        SCANNING,
+        LOCKED_ON,
+        SEARCH,
+        SHOOT
+    }
+
     Ray2D ray;
     RaycastHit2D hit;
     [SerializeField] private Collider2D cone;
@@ -28,6 +31,7 @@ public class Sight : MonoBehaviour
     private State state = State.IDLE;
     private GameObject player;
     private bool sees_player = false;
+    private bool paused = false;
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +59,9 @@ public class Sight : MonoBehaviour
                 break;
             case State.SEARCH:
                 search();
+                break;
+            case State.SHOOT:
+                aim();
                 break;
         }
     }
@@ -100,8 +107,14 @@ public class Sight : MonoBehaviour
     Vector2 diff;
     float cone_angle;
 
+    private IEnumerator coroutine;
+    private float lock_time = .5f;
     private void lock_on()
     {
+        coroutine = pause(lock_time);
+        if(!started)
+            StartCoroutine(coroutine);
+
         new_origin = new Vector2(transform.position.x, transform.position.y + .5f);
         diff = new Vector2(player.transform.position.x - new_origin.x, player.transform.position.y - new_origin.y);
 
@@ -109,8 +122,11 @@ public class Sight : MonoBehaviour
 
         cone_angle = Mathf.Acos(lock_line.direction.x) / Mathf.PI * 180;
 
-        if(diff.y > 0)
-            cone.transform.rotation = Quaternion.Euler(0, 0, cone_angle);
+        if (diff.y > 0)
+        {
+            if(cone_angle < Mathf.PI/2)
+                cone.transform.rotation = Quaternion.Euler(0, 0, cone_angle);
+        }
         Target = Physics2D.Raycast(lock_line.origin, lock_line.direction, 10, hittable);
 
         if (!player_in_range() || (Target && Target.collider.gameObject.name != "Player"))
@@ -118,15 +134,28 @@ public class Sight : MonoBehaviour
 
         UnityEngine.Debug.DrawRay(lock_line.origin, lock_line.direction, Color.green);
         UnityEngine.Debug.DrawRay(lock_line.origin, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)), Color.red);
-        base_angle = (-11.303f+cone_angle) * Mathf.PI / 180; 
+        base_angle = (-11.303f+cone_angle) * Mathf.PI / 180;
+
+        if (paused)
+        {
+            //state = State.SHOOT;
+            started = false;
+        }
     }
 
     bool top_hit = false, bottom_hit = false, right = false, repeat = false;
     private void search()
     {
         cone.transform.rotation = Quaternion.Euler(0, 0, cone_angle);
+        ray = new Ray2D(new_origin, new Vector2(Mathf.Cos(cone_angle * Mathf.PI / 180), Mathf.Sin(cone_angle * Mathf.PI / 180)));
+        hit = Physics2D.Raycast(ray.origin, ray.direction, 10, hittable);
 
-        if(!repeat && cone_angle < 90)
+        if (hit && hit.collider.gameObject.name == "Player")
+        {
+            state = State.LOCKED_ON;
+        }
+
+        if (!repeat && cone_angle < 90)
         {
             right = true;
             repeat = true;
@@ -197,6 +226,34 @@ public class Sight : MonoBehaviour
             base_angle = (-11.303f + 180) * Mathf.PI / 180;
         }
     }
+    private float aim_time = 1f;
+    private void aim()
+    {
+        hit = Physics2D.Raycast(lock_line.origin, lock_line.direction, 10, hittable);
+
+        coroutine = pause(aim_time);
+        if(!started)
+            StartCoroutine(coroutine);
+
+        if (!paused)
+        {
+            state = State.SEARCH;
+            started = false;
+
+            if (hit && hit.collider.gameObject.name == "Player")
+            {
+                UnityEngine.Debug.Log("Player was shot");
+            }
+        }
+        UnityEngine.Debug.DrawRay(lock_line.origin, lock_line.direction, Color.black);
+    }
+    private bool started = false;
+    private IEnumerator pause(float time)
+    {
+        started = true;
+        yield return new WaitForSeconds(time);
+        paused = !paused;
+    }
 
     private bool player_in_range()
     {
@@ -209,5 +266,19 @@ public class Sight : MonoBehaviour
     public bool get_sees_player()
     {
         return sees_player;
+    }
+    public void flip_sight(int dir)
+    {
+        cone.transform.rotation = Quaternion.Euler(0, 0, 180*dir);
+        if(dir < 0 && base_angle < Math.PI/2)
+        {
+            base_angle += Mathf.PI;
+            angle += Mathf.PI;
+        }
+        else if (dir > 0 && base_angle > Math.PI / 2)
+        {
+            base_angle -= Mathf.PI;
+            angle -= Mathf.PI;
+        }
     }
 }

@@ -7,6 +7,8 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] public Rigidbody2D PlayerBody;
     [SerializeField] public Transform groundCheck;
     [SerializeField] public LayerMask groundLayer;
+    [SerializeField] private LayerMask smoke_layer;
+    [SerializeField] private BoxCollider2D hurtbox;
     [SerializeField] private TrailRenderer tr;
     [SerializeField] private SpriteRenderer sr;
 
@@ -23,10 +25,13 @@ public class PlayerScript : MonoBehaviour
     private bool canDash = true;
     private bool isDashing =  false;
 
+    //Invisibility values
     public bool Invis = false;
     public bool canInvis = true;
     public float invisCool = 5f;
     public float invisTime = 1f;
+
+    public bool obstructed = false;
 
 
     // Update is called once per frame.
@@ -52,6 +57,15 @@ public class PlayerScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E) && canInvis)
         {
             StartCoroutine(Invisibility());
+        }
+
+        if (hurtbox.IsTouchingLayers(smoke_layer))
+        {
+            obstructed = true;
+        }
+        else
+        {
+            obstructed = false;
         }
 
         Flip();
@@ -83,6 +97,7 @@ public class PlayerScript : MonoBehaviour
         yield return new WaitForSeconds(invisCool);
         canInvis = true;
     }
+    
     
     private IEnumerator Dash()
     {

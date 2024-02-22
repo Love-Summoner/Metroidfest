@@ -8,12 +8,13 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] public Transform groundCheck;
     [SerializeField] public LayerMask groundLayer;
     [SerializeField] private TrailRenderer tr;
+    [SerializeField] private SpriteRenderer sr;
 
     public float speed;
     public float move;
     public float jumpingPower;
     public bool grounded;
-    private bool isFacingRight = true;
+    private bool isFacingRight = false;
 
     //Dashing values
     public float dashStrength;
@@ -21,6 +22,11 @@ public class PlayerScript : MonoBehaviour
     public float dashingCooldown;
     private bool canDash = true;
     private bool isDashing =  false;
+
+    public bool Invis = false;
+    public bool canInvis = true;
+    public float invisCool = 5f;
+    public float invisTime = 1f;
 
 
     // Update is called once per frame.
@@ -43,6 +49,10 @@ public class PlayerScript : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
+        if(Input.GetKeyDown(KeyCode.E) && canInvis)
+        {
+            StartCoroutine(Invisibility());
+        }
 
         Flip();
     }
@@ -62,13 +72,25 @@ public class PlayerScript : MonoBehaviour
         }
     }
     
+    private IEnumerator Invisibility()
+    {
+        canInvis = false;
+        Invis = true;
+        sr.color = new Color(0f, 0f, 0f, .5f);
+        yield return new WaitForSeconds(invisTime);
+        Invis = false;
+        sr.color = new Color(0f, 0f, 0f, 1f);
+        yield return new WaitForSeconds(invisCool);
+        canInvis = true;
+    }
+    
     private IEnumerator Dash()
     {
         canDash = false;
         isDashing = true;
         float originalGravity = PlayerBody.gravityScale;
         PlayerBody.gravityScale = 0f;
-        PlayerBody.velocity = new Vector2(transform.localScale.x * -dashStrength, 0f);
+        PlayerBody.velocity = new Vector2(transform.localScale.x * dashStrength, 0f);
         tr.emitting = true;
         yield return new WaitForSeconds(dashingTime);
         isDashing = false;

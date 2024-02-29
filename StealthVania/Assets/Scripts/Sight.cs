@@ -32,6 +32,7 @@ public class Sight : MonoBehaviour
     private GameObject player;
     private bool sees_player = false;
     private bool paused = false;
+    [SerializeField] private int experience;
 
     // Start is called before the first frame update
     void Start()
@@ -130,7 +131,11 @@ public class Sight : MonoBehaviour
         Target = Physics2D.Raycast(lock_line.origin, lock_line.direction, 10, hittable);
 
         if (!player_in_range() || (Target && Target.collider.gameObject.name != "Player"))
+        {
+            if (experience == 0)
+                swap_dir(1);
             state = State.SEARCH;
+        }
 
         UnityEngine.Debug.DrawRay(lock_line.origin, lock_line.direction, Color.green);
         UnityEngine.Debug.DrawRay(lock_line.origin, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)), Color.red);

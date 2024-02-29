@@ -42,6 +42,8 @@ public class Sight : MonoBehaviour
     }
     private void Update()
     {
+        flip();
+
         if (state == State.LOCKED_ON)
             sees_player = true;
         else
@@ -105,7 +107,7 @@ public class Sight : MonoBehaviour
     RaycastHit2D Target;
     Vector2 new_origin;
     Vector2 diff;
-    float cone_angle;
+    float cone_angle = 0;
 
     private IEnumerator coroutine;
     private float lock_time = .5f;
@@ -118,15 +120,13 @@ public class Sight : MonoBehaviour
         new_origin = new Vector2(transform.position.x, transform.position.y + .5f);
         diff = new Vector2(player.transform.position.x - new_origin.x, player.transform.position.y - new_origin.y);
 
-        lock_line = new Ray2D(new_origin, diff);
+        if(diff.y > 0)
+            lock_line = new Ray2D(new_origin, diff);
 
         cone_angle = Mathf.Acos(lock_line.direction.x) / Mathf.PI * 180;
 
-        if (diff.y > 0)
-        {
-            if(cone_angle < Mathf.PI/2)
-                cone.transform.rotation = Quaternion.Euler(0, 0, cone_angle);
-        }
+        cone.transform.rotation = Quaternion.Euler(0, 0, cone_angle);
+
         Target = Physics2D.Raycast(lock_line.origin, lock_line.direction, 10, hittable);
 
         if (!player_in_range() || (Target && Target.collider.gameObject.name != "Player"))
@@ -267,18 +267,33 @@ public class Sight : MonoBehaviour
     {
         return sees_player;
     }
-    public void flip_sight(int dir)
+    private void flip()
     {
-        cone.transform.rotation = Quaternion.Euler(0, 0, 180*dir);
-        if(dir < 0 && base_angle < Math.PI/2)
+        if (cone_angle < 90 && transform.localScale.x < 0)
         {
-            base_angle += Mathf.PI;
-            angle += Mathf.PI;
+            transform.localScale = new Vector2(transform.localScale.x*-1, transform.localScale.y);
+            cone.transform.localScale = new Vector2(Mathf.Abs(cone.transform.localScale.x), cone.transform.localScale.y);
         }
-        else if (dir > 0 && base_angle > Math.PI / 2)
+        else if(cone_angle > 90 && transform.localScale.x > 0)
         {
-            base_angle -= Mathf.PI;
-            angle -= Mathf.PI;
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+            cone.transform.localScale = new Vector2(cone.transform.localScale.x * -1, cone.transform.localScale.y);
+        }
+    }
+    public void swap_dir(int dir)
+    {
+        cone_angle = 180 * dir;
+        cone.transform.rotation = Quaternion.Euler(0, 0, cone_angle);
+        base_angle = (180 * dir - 11.303f) * Mathf.PI / 180;
+    }
+    public void ChangeState(int choice)
+    {
+        switch (choice)
+        {
+            case 0:
+                state = State.IDLE; break;
+            case 1:
+                state = State.SEARCH; break;
         }
     }
 }

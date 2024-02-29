@@ -1030,6 +1030,7 @@ MonoBehaviour:
   sight: {fileID: 783407656}
   speed: 4
   body: {fileID: 783407653}
+  player_pos: {fileID: 624521606}
 --- !u!114 &783407658
 MonoBehaviour:
   m_ObjectHideFlags: 0

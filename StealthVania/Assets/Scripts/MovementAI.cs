@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -27,6 +28,8 @@ public class MovementAI : MonoBehaviour
     [SerializeField] private Rigidbody2D body;
     [SerializeField] private Transform player_pos;
     [SerializeField] private LayerMask obstruction;
+    [SerializeField] private GameObject attack;
+    [SerializeField] private Animator attack_anim;
 
     private bool has_path;
     private IEnumerator coroutine;
@@ -130,7 +133,6 @@ public class MovementAI : MonoBehaviour
             body.velocity = new Vector2(0, body.velocity.y);
         if (!sight.get_sees_player())
         {
-            state = State.SEARCH;
             last_pos = player_pos.position;
         }
     }
@@ -192,9 +194,13 @@ public class MovementAI : MonoBehaviour
         if (Mathf.Abs(cur_speed) < speed)
         {
             cur_speed = cur_speed + acceleration * dir;
+            acceleration +=.01f;
         }
-        else if (Math.Sign(cur_speed) == dir) 
-            cur_speed = speed*dir;
+        else if (Math.Sign(cur_speed) == dir)
+        {
+            acceleration = .05f;
+            cur_speed = speed * dir;
+        }
 
         return cur_speed;
     }

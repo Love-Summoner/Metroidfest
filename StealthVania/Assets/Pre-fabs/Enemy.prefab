@@ -295,6 +295,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   experience: 0
+  movement: {fileID: 5711130942842248314}
 --- !u!114 &1282661179158393386
 MonoBehaviour:
   m_ObjectHideFlags: 0

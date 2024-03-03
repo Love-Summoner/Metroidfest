@@ -33,6 +33,7 @@ public class Sight : MonoBehaviour
     private bool sees_player = false;
     private bool paused = false;
     [SerializeField] private int experience;
+    [SerializeField] private MovementAI movement;
 
     // Start is called before the first frame update
     void Start()
@@ -111,12 +112,16 @@ public class Sight : MonoBehaviour
     float cone_angle = 0;
 
     private IEnumerator coroutine;
-    private float lock_time = .5f;
+    private float lock_time = 1f;
+    private bool started = false;
     private void lock_on()
     {
-        coroutine = pause(lock_time);
-        if(!started)
+        if (!started)
+        {
+            coroutine = pause(lock_time);
             StartCoroutine(coroutine);
+            started = true;
+        }
 
         new_origin = new Vector2(transform.position.x, transform.position.y + .5f);
         diff = new Vector2(player.transform.position.x - new_origin.x, player.transform.position.y - new_origin.y);
@@ -141,11 +146,10 @@ public class Sight : MonoBehaviour
         UnityEngine.Debug.DrawRay(lock_line.origin, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)), Color.red);
         base_angle = (-11.303f+cone_angle) * Mathf.PI / 180;
 
-        if (paused)
+        if (!paused)
         {
-            //state = State.SHOOT;
             started = false;
-        }
+            state = State.SHOOT;        }
     }
 
     bool top_hit = false, bottom_hit = false, right = false, repeat = false;
@@ -231,33 +235,39 @@ public class Sight : MonoBehaviour
             base_angle = (-11.303f + 180) * Mathf.PI / 180;
         }
     }
+
     private float aim_time = 1f;
     private void aim()
     {
         hit = Physics2D.Raycast(lock_line.origin, lock_line.direction, 10, hittable);
 
-        coroutine = pause(aim_time);
-        if(!started)
-            StartCoroutine(coroutine);
-
-        if (!paused)
+        if (!started)
         {
-            state = State.SEARCH;
-            started = false;
+            coroutine = pause(aim_time);
+            movement.cancel(aim_time);
+            StartCoroutine(coroutine);
+            started = true;
+}
 
-            if (hit && hit.collider.gameObject.name == "Player")
-            {
-                UnityEngine.Debug.Log("Player was shot");
-            }
-        }
         UnityEngine.Debug.DrawRay(lock_line.origin, lock_line.direction, Color.black);
+
+        if (paused)
+            return;
+
+        state = State.SEARCH;
+        started = false;
+
+        if (hit && hit.collider.gameObject.name == "Player")
+        {
+
+        }
     }
-    private bool started = false;
+
     private IEnumerator pause(float time)
     {
-        started = true;
+        paused = true;
         yield return new WaitForSeconds(time);
-        paused = !paused;
+        paused = false;
     }
 
     private bool player_in_range()

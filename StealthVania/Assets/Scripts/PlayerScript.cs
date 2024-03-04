@@ -7,6 +7,8 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] public Rigidbody2D PlayerBody;
     [SerializeField] public Transform groundCheck;
     [SerializeField] public LayerMask groundLayer;
+    [SerializeField] public LayerMask attackLayer;
+    [SerializeField] private LayerMask deathLayer;
     [SerializeField] private LayerMask smoke_layer;
     [SerializeField] private BoxCollider2D hurtbox;
     [SerializeField] private TrailRenderer tr;
@@ -33,6 +35,12 @@ public class PlayerScript : MonoBehaviour
 
     public bool obstructed = false;
 
+    //health values
+
+    public bool Invinc = false;
+    public float invincTime = 1f;
+    public int maxHealth = 5;
+    public int health = 5;
 
     // Update is called once per frame.
     void Update()
@@ -67,9 +75,37 @@ public class PlayerScript : MonoBehaviour
         {
             obstructed = false;
         }
+        if (hurtbox.IsTouchingLayers(attackLayer))
+        {
+            StartCoroutine(invincible());
+            if (!Invinc)
+            {
+                health -= 1;
+                Invinc = true;
+            }
+            if (health < 1)
+            {
+                Death();
+            }
+        }
+        if (hurtbox.IsTouchingLayers(deathLayer))
+        {
+            Death();
+        }
 
         Flip();
     }
+    private void Death()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private IEnumerator invincible()
+    {
+        yield return new WaitForSeconds(invincTime);
+        Invinc = false;
+    }
+
     private bool isGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);

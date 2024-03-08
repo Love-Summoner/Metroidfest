@@ -19,8 +19,8 @@ public class MovementAI : MonoBehaviour
         RANGE, 
         MELEE
     }
-    
-    private State state = State.IDLE;
+
+    [SerializeField] private State state = State.IDLE;
     [SerializeField] private Type type;
     [SerializeField] private float path_point1, path_point2;
     [SerializeField] private Sight sight;
@@ -29,13 +29,14 @@ public class MovementAI : MonoBehaviour
     [SerializeField] private Transform player_pos;
     [SerializeField] private LayerMask obstruction;
     [SerializeField] private GameObject attack;
-    [SerializeField] private Animator attack_anim;
 
     private bool has_path;
     private IEnumerator coroutine;
+    public bool is_ranged = true;
 
     private void Start()
     {
+        is_ranged = type == Type.RANGE;
         if(path_point1 == 0 &&  path_point2 == 0)
         {
             has_path = false;
@@ -48,8 +49,9 @@ public class MovementAI : MonoBehaviour
     void Update()
     {
         if(stop) return;
+
         wall_dir = wallcheck();
-        if(!move_back && !sight.get_sees_player())
+        if(!move_back && !sight.get_sees_player() && MathF.Abs(body.velocity.x) > .001f)
             flip();
 
         switch (type)
@@ -85,8 +87,10 @@ public class MovementAI : MonoBehaviour
                 idle();
                 break;
             case State.CHASE:
+                melee_chase();
                 break;
-            case State.ATTACK: 
+            case State.SEARCH:
+                search();
                 break;
         }
     }
@@ -134,6 +138,27 @@ public class MovementAI : MonoBehaviour
         if (!sight.get_sees_player())
         {
             last_pos = player_pos.position;
+            state = State.SEARCH;
+        }
+    }
+    private void melee_chase()
+    {
+        float separation = player_pos.position.x - transform.position.x;
+        int horizontal = Math.Sign(separation);
+
+        if (MathF.Abs(separation) > 2)
+            body.velocity = new Vector2(accelerate(horizontal), body.velocity.y);
+        else if (player_pos.position.y <= transform.position.y+1) 
+        {
+            body.velocity = new Vector2(0, body.velocity.y);
+            Instantiate(attack, new Vector2(transform.position.x+.5f*MathF.Sign(transform.localScale.x), transform.position.y+.5f), new Quaternion(0, 0, MathF.Sign(transform.localScale.x)-1, 0));
+            sight.delay(.3f);
+            cancel(.3f);
+        }
+        if (!sight.get_sees_player())
+        {
+            last_pos = player_pos.position;
+            state = State.SEARCH;
         }
     }
     private void search()

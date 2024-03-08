@@ -32,7 +32,7 @@ public class Sight : MonoBehaviour
     private GameObject player;
     private bool sees_player = false;
     private bool paused = false;
-    [SerializeField] private int experience;
+    private bool stop = false;
     [SerializeField] private MovementAI movement;
 
     // Start is called before the first frame update
@@ -44,6 +44,8 @@ public class Sight : MonoBehaviour
     }
     private void Update()
     {
+        if(stop) return;
+
         flip();
 
         if (state == State.LOCKED_ON)
@@ -116,7 +118,7 @@ public class Sight : MonoBehaviour
     private bool started = false;
     private void lock_on()
     {
-        if (!started)
+        if (!started && movement.is_ranged)
         {
             coroutine = pause(lock_time);
             StartCoroutine(coroutine);
@@ -137,8 +139,6 @@ public class Sight : MonoBehaviour
 
         if (!player_in_range() || (Target && Target.collider.gameObject.name != "Player"))
         {
-            if (experience == 0)
-                swap_dir(1);
             state = State.SEARCH;
         }
 
@@ -146,7 +146,7 @@ public class Sight : MonoBehaviour
         UnityEngine.Debug.DrawRay(lock_line.origin, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)), Color.red);
         base_angle = (-11.303f+cone_angle) * Mathf.PI / 180;
 
-        if (!paused)
+        if (!paused && movement.is_ranged)
         {
             started = false;
             state = State.SHOOT;        }
@@ -310,5 +310,19 @@ public class Sight : MonoBehaviour
             case 1:
                 state = State.SEARCH; break;
         }
+    }
+
+
+    private IEnumerator blind;
+    private IEnumerator wait(float time)
+    {
+        stop = true;
+        yield return new WaitForSeconds(time);
+        stop = false;
+    }
+    public void delay(float time)
+    {
+        blind = wait(time);
+        StartCoroutine(blind);
     }
 }

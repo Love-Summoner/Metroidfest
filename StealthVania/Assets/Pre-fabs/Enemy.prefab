@@ -294,7 +294,6 @@ MonoBehaviour:
   play_layer:
     serializedVersion: 2
     m_Bits: 128
-  experience: 0
   movement: {fileID: 5711130942842248314}
 --- !u!114 &1282661179158393386
 MonoBehaviour:
@@ -326,6 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa24cf2965213b345ac008e3934a9455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
   type: 0
   path_point1: -5
   path_point2: 5
@@ -336,6 +336,8 @@ MonoBehaviour:
   obstruction:
     serializedVersion: 2
     m_Bits: 8
+  attack: {fileID: 7888151689465131918, guid: e70e59391efa38b4bb26f7a19c4ec061, type: 3}
+  is_ranged: 1
 --- !u!1 &6036788070682560416
 GameObject:
   m_ObjectHideFlags: 0

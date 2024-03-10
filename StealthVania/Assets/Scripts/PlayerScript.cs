@@ -42,9 +42,18 @@ public class PlayerScript : MonoBehaviour
     public int maxHealth = 5;
     public int health = 5;
 
+    //for detecting if the player is seen
+    private bool seen = false;
+
     // Update is called once per frame.
     void Update()
     {
+        if(Invis)
+        {
+            gameObject.layer = 0;
+        }
+        else
+            gameObject.layer = 7;
         if (isDashing)
         {
             return;
@@ -62,7 +71,7 @@ public class PlayerScript : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
-        if(Input.GetKeyDown(KeyCode.E) && canInvis)
+        if(Input.GetKeyDown(KeyCode.E) && canInvis && !seen)
         {
             StartCoroutine(Invisibility());
         }
@@ -92,6 +101,7 @@ public class PlayerScript : MonoBehaviour
         {
             Death();
         }
+
 
         Flip();
     }
@@ -126,10 +136,10 @@ public class PlayerScript : MonoBehaviour
     {
         canInvis = false;
         Invis = true;
-        sr.color = new Color(0f, 0f, 0f, .5f);
+        sr.color = new Color(1f, 1f, 1f, .5f);
         yield return new WaitForSeconds(invisTime);
         Invis = false;
-        sr.color = new Color(0f, 0f, 0f, 1f);
+        sr.color = new Color(1f, 1f, 1f, 1f);
         yield return new WaitForSeconds(invisCool);
         canInvis = true;
     }
@@ -150,5 +160,16 @@ public class PlayerScript : MonoBehaviour
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
         
+    }
+    public IEnumerator noticed()
+    {
+        seen = true;
+        yield return new WaitForSeconds(1);
+        seen = false;
+    }
+
+    public bool is_seen()
+    {
+        return seen;
     }
 }

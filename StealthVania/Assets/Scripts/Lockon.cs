@@ -5,9 +5,11 @@ using UnityEngine;
 public class Lockon : MonoBehaviour
 {
     [SerializeField] private Transform player;
+    [SerializeField] private bool boss_room = false;
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(player.position.x, 0, -10);
+        if (!boss_room)
+            transform.position = new Vector3(player.position.x, 0, -10);
     }
 }

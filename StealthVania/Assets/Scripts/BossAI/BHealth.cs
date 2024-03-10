@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EHealth : MonoBehaviour
+enum Phase
+{
+    PHASE1, PHASE2, PHASE3
+}
+public class BHealth : MonoBehaviour
 {
     [SerializeField] private Collider2D Basic_hurt;
-    [SerializeField] private Sight sight;
+    [SerializeField] private BSight sight;
     [SerializeField] private LayerMask attack_layer;
     [SerializeField] private GameObject Player;
     private float invinc_time = .5f;
@@ -21,13 +25,14 @@ public class EHealth : MonoBehaviour
         {
             if (sight.get_sees_player())
             {
-                multiplier = 1;
+                Player.GetComponent<Rigidbody2D>().AddForce(new Vector2(100 * transform.localScale.x, 0));
+                multiplier = 0;
             }
             else
                 multiplier = 2;
-            if(Player.transform.position.x < transform.position.x && transform.localScale.x > 0)
+            if (Player.transform.position.x < transform.position.x && transform.localScale.x > 0)
                 multiplier *= 2;
-            else if(Player.transform.position.x > transform.position.x && transform.localScale.x < 0)
+            else if (Player.transform.position.x > transform.position.x && transform.localScale.x < 0)
                 multiplier *= 2;
 
             coroutine = invincible();
@@ -35,15 +40,17 @@ public class EHealth : MonoBehaviour
 
             if (!invinc)
             {
-                health -= 1*multiplier;
+                Debug.Log(health);
+                health -= 1 * multiplier;
                 invinc = true;
             }
         }
-        if(health < 1)
+        if (health < 1)
             death();
     }
-    
-    private IEnumerator invincible() {
+
+    private IEnumerator invincible()
+    {
         yield return new WaitForSeconds(invinc_time);
         invinc = false;
     }

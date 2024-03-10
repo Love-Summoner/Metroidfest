@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 
 
-public class Sight : MonoBehaviour
+public class BSight : MonoBehaviour
 {
     enum State
     {
@@ -34,7 +34,7 @@ public class Sight : MonoBehaviour
     private bool sees_player = false;
     private bool paused = false;
     private bool stop = false;
-    [SerializeField] private MovementAI movement;
+    [SerializeField] private BossMovementAI movement;
 
     // Start is called before the first frame update
     void Start()
@@ -119,12 +119,6 @@ public class Sight : MonoBehaviour
     private bool started = false;
     private void lock_on()
     {   
-        if (!started && movement.is_ranged)
-        {
-            coroutine = pause(lock_time);
-            StartCoroutine(coroutine);
-            started = true;
-        }
 
         new_origin = new Vector2(transform.position.x, transform.position.y);
         diff = new Vector2(player.transform.position.x - new_origin.x, player.transform.position.y+.35f - new_origin.y);
@@ -146,10 +140,7 @@ public class Sight : MonoBehaviour
         UnityEngine.Debug.DrawRay(lock_line.origin, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)), Color.red);
         base_angle = (-11.303f+cone_angle) * Mathf.PI / 180;
 
-        if (!paused && movement.is_ranged)
-        {
-            started = false;
-            state = State.SHOOT;        }
+       
     }
 
     bool top_hit = false, bottom_hit = false, right = false, repeat = false;

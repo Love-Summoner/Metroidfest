@@ -1665,7 +1665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 360929310}
-  boss_room: 1
+  boss_room: 0
 --- !u!1 &1513448654
 GameObject:
   m_ObjectHideFlags: 0

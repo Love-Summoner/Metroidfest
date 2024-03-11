@@ -35,11 +35,13 @@ public class Sight : MonoBehaviour
     private bool paused = false;
     private bool stop = false;
     [SerializeField] private MovementAI movement;
+    [SerializeField] private bool starts_backwards = false;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        if (starts_backwards)
+            swap_dir(1);
         ray = new Ray2D(new Vector2(transform.position.x, transform.position.y), new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)));
         UnityEngine.Debug.Log(ray.direction);
     }

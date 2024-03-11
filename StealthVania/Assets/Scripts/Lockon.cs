@@ -10,6 +10,6 @@ public class Lockon : MonoBehaviour
     void Update()
     {
         if (!boss_room)
-            transform.position = new Vector3(player.position.x, 0, -10);
+            transform.position = new Vector3(player.position.x, player.position.y, -10);
     }
 }

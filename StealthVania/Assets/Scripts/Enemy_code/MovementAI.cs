@@ -29,6 +29,7 @@ public class MovementAI : MonoBehaviour
     [SerializeField] private Transform player_pos;
     [SerializeField] private LayerMask obstruction;
     [SerializeField] private GameObject attack;
+    [SerializeField] private BoxCollider2D contact_box;
 
     private bool has_path;
     private IEnumerator coroutine;
@@ -81,6 +82,8 @@ public class MovementAI : MonoBehaviour
     }
     private void meleeAI()
     {
+        if (contact_box.IsTouchingLayers(7))
+            state = State.CHASE;
         switch (state)
         {
             case State.IDLE:

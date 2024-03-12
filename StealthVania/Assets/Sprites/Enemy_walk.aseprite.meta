@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bf80c5458cde58845bc5693ff0fcf675
+guid: 9dde4c3007b7bae498423b937abc0a08
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,18 +121,38 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Working_sprite
+  - name: Enemy_walk
     originalName: 
-    pivot: {x: 0.5555556, y: 0}
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 146
+      width: 24
+      height: 64
+    spriteID: 3cb6a171e3487ce479dd558672ca0543
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 146}
+  - name: Enemy_walk_Frame_1
+    originalName: 
+    pivot: {x: 0.32432434, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 27
-      height: 64
-    spriteID: 4bf135f44cea0654286203fea3369675
+      width: 37
+      height: 63
+    spriteID: b67e63250f1c4774a8d8a9e21a823009
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -141,23 +161,87 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: Enemy_walk_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 49
+      y: 4
+      width: 24
+      height: 64
+    spriteID: cf44ee0dff5c45944908cd30b30413be
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 49, y: 4}
+  - name: Enemy_walk_Frame_3
+    originalName: 
+    pivot: {x: 0.32432434, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 75
+      width: 37
+      height: 63
+    spriteID: 02445663ab68a2244a0d881011f7c475
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 75}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1371161237
-    name: Working_sprite
+    guid: -1990031858
+    name: Enemy_walk
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Working_sprite
+    - name: Enemy_walk_Frame_0
       frameIndex: 0
       cellRect:
-        x: 17
+        x: 20
         y: 0
-        width: 27
+        width: 24
         height: 64
-      spriteId: 4bf135f44cea0654286203fea3369675
+      spriteId: 3cb6a171e3487ce479dd558672ca0543
+    - name: Enemy_walk_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 20
+        y: 0
+        width: 37
+        height: 63
+      spriteId: b67e63250f1c4774a8d8a9e21a823009
+    - name: Enemy_walk_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 20
+        y: 0
+        width: 24
+        height: 64
+      spriteId: cf44ee0dff5c45944908cd30b30413be
+    - name: Enemy_walk_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 20
+        y: 0
+        width: 37
+        height: 63
+      spriteId: 02445663ab68a2244a0d881011f7c475
     linkedCells: []
     parentIndex: -1
   platformSettings: []

@@ -30,9 +30,6 @@ public class MovementAI : MonoBehaviour
     [SerializeField] private LayerMask obstruction;
     [SerializeField] private GameObject attack;
     [SerializeField] private BoxCollider2D contact_box;
-    [SerializeField] private BoxCollider2D alert_box;
-    [SerializeField] private LayerMask warn_layer;
-    [SerializeField] private LayerMask def_layer;
 
     private bool has_path;
     private IEnumerator coroutine;
@@ -53,11 +50,6 @@ public class MovementAI : MonoBehaviour
     void Update()
     {
         if(stop) return;
-
-        if(contact_box.IsTouchingLayers(warn_layer) && state == State.IDLE)
-        {
-            Alert();
-        }
 
         wall_dir = wallcheck();
         if(!move_back && !sight.get_sees_player() && MathF.Abs(body.velocity.x) > .001f)
@@ -113,11 +105,6 @@ public class MovementAI : MonoBehaviour
         if (sight.get_sees_player())
         {
             state = State.CHASE;
-            if (alert_box.gameObject.layer == 10)
-            {
-                alert_box.gameObject.layer = warn_layer;
-                alert_box.gameObject.layer = def_layer;
-            }
         }
         if (!has_path)
             return;
@@ -170,7 +157,7 @@ public class MovementAI : MonoBehaviour
         else if (player_pos.position.y <= transform.position.y+.5f) 
         {
             body.velocity = new Vector2(0, body.velocity.y);
-            Instantiate(attack, new Vector2(transform.position.x+.2f*MathF.Sign(transform.localScale.x), transform.position.y), new Quaternion(0, 0, MathF.Sign(transform.localScale.x)-1, 0));
+            Instantiate(attack, new Vector2(transform.position.x+.2f*MathF.Sign(transform.localScale.x), transform.position.y+.4f), new Quaternion(0, 0, MathF.Sign(transform.localScale.x)-1, 0));
             sight.delay(.3f);
             cancel(.5f);
         }

@@ -36,13 +36,15 @@ public class Sight : MonoBehaviour
     private bool stop = false;
     [SerializeField] private MovementAI movement;
     [SerializeField] private bool starts_backwards = false;
+    [SerializeField] private LineRenderer line;
+    [SerializeField] private float offset;
 
     // Start is called before the first frame update
     void Start()
     {
         if (starts_backwards)
             swap_dir(1);
-        ray = new Ray2D(new Vector2(transform.position.x, transform.position.y), new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)));
+        ray = new Ray2D(new Vector2(transform.position.x, transform.position.y + offset), new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)));
         UnityEngine.Debug.Log(ray.direction);
     }
     private void Update()
@@ -77,7 +79,7 @@ public class Sight : MonoBehaviour
     
     private void idle()
     {
-        ray = new Ray2D(new Vector2(transform.position.x, transform.position.y), ray.direction);
+        ray = new Ray2D(new Vector2(transform.position.x, transform.position.y + offset), ray.direction);
 
         if (player_in_range())
             state = State.SCANNING;
@@ -88,7 +90,7 @@ public class Sight : MonoBehaviour
 
     private void checkforObject()
     {
-        ray = new Ray2D(new Vector2(transform.position.x, transform.position.y), new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)));
+        ray = new Ray2D(new Vector2(transform.position.x, transform.position.y + offset), new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)));
         hit = Physics2D.Raycast(ray.origin, ray.direction, 10, hittable);
 
        if(hit && hit.collider.gameObject.name == "Player")
@@ -120,7 +122,12 @@ public class Sight : MonoBehaviour
     private float lock_time = 1f;
     private bool started = false;
     private void lock_on()
-    {   
+    {
+        if (movement.is_ranged)
+        {
+            line.SetWidth(.01f, .01f);
+            line.SetPosition(0, player.transform.position);
+        }
         if (!started && movement.is_ranged)
         {
             coroutine = pause(lock_time);
@@ -128,7 +135,7 @@ public class Sight : MonoBehaviour
             started = true;
         }
 
-        new_origin = new Vector2(transform.position.x, transform.position.y);
+        new_origin = new Vector2(transform.position.x, transform.position.y + offset);
         diff = new Vector2(player.transform.position.x - new_origin.x, player.transform.position.y+.35f - new_origin.y);
 
         lock_line = new Ray2D(new_origin, diff);

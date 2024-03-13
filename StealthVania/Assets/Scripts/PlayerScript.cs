@@ -15,7 +15,9 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private TrailRenderer tr;
     [SerializeField] private SpriteRenderer sr;
 
-    private SmokeScreen SmokeScript;
+    //[SerializeField] private SmokeScreen SmokeScript;
+    [SerializeField] private GameObject smoke;
+
 
     public float speed;
     public float move;
@@ -40,6 +42,10 @@ public class PlayerScript : MonoBehaviour
     public float invisCool = 5f;
     public float invisTime = 1f;
 
+    //Smoke values
+    public bool canSmoke = false;
+    public float smokeTime = 3f;
+    public float smokeCool = 10f;
     public bool obstructed = false;
 
     //health values
@@ -81,6 +87,10 @@ public class PlayerScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E) && canInvis && !seen)
         {
             StartCoroutine(Invisibility());
+        }
+        if (Input.GetKeyDown(KeyCode.R) && canSmoke)
+        {
+            StartCoroutine(Smokescreen());
         }
 
         if (hurtbox.IsTouchingLayers(smoke_layer))
@@ -171,6 +181,20 @@ public class PlayerScript : MonoBehaviour
         canDash = true;
         
     }
+
+    private IEnumerator Smokescreen()
+    {
+        smoke.transform.position = PlayerBody.transform.position;
+        canSmoke = false;
+        smoke.SetActive(true);
+        yield return new WaitForSeconds(smokeTime);
+        smoke.SetActive(false);
+        yield return new WaitForSeconds(smokeCool);
+        canSmoke = true;
+
+
+    }
+
     public IEnumerator noticed()
     {
         seen = true;
@@ -198,8 +222,8 @@ public class PlayerScript : MonoBehaviour
 
     public void getSmoke()
     {
-        SmokeScript._hasSmoke = true;
-        SmokeScript.canSmoke = true;
+        _hasSmoke = true;
+        canSmoke = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

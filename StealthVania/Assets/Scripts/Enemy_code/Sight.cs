@@ -28,6 +28,8 @@ public class Sight : MonoBehaviour
     public LayerMask hittable;
     public LayerMask play_layer;
 
+    public bool is_smart = false;
+
     private State state = State.IDLE;
     private GameObject player;
     [SerializeField] private PlayerScript player_script;
@@ -80,6 +82,7 @@ public class Sight : MonoBehaviour
     private void idle()
     {
         ray = new Ray2D(new Vector2(transform.position.x, transform.position.y + offset), ray.direction);
+        line.SetWidth(.0f, .0f);
 
         if (player_in_range())
             state = State.SCANNING;
@@ -90,6 +93,7 @@ public class Sight : MonoBehaviour
 
     private void checkforObject()
     {
+        line.SetWidth(.0f, .0f);
         ray = new Ray2D(new Vector2(transform.position.x, transform.position.y + offset), new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)));
         hit = Physics2D.Raycast(ray.origin, ray.direction, 10, hittable);
 
@@ -125,8 +129,10 @@ public class Sight : MonoBehaviour
     {
         if (movement.is_ranged)
         {
+            line.SetColors(Color.black, Color.black);
             line.SetWidth(.01f, .01f);
-            line.SetPosition(0, player.transform.position);
+            line.SetPosition(0, new Vector2(player.transform.position.x, player.transform.position.y + .5f));
+            line.SetPosition(1, new Vector2(transform.position.x, transform.position.y + .5f));
         }
         if (!started && movement.is_ranged)
         {
@@ -167,7 +173,9 @@ public class Sight : MonoBehaviour
         cone.transform.rotation = Quaternion.Euler(0, 0, cone_angle);
         ray = new Ray2D(new_origin, new Vector2(Mathf.Cos(cone_angle * Mathf.PI / 180), Mathf.Sin(cone_angle * Mathf.PI / 180)));
         hit = Physics2D.Raycast(ray.origin, ray.direction, 10, hittable);
+        line.SetWidth(.0f, .0f);
 
+       
         if (hit && hit.collider.gameObject.name == "Player")
         {
             state = State.LOCKED_ON;
@@ -248,7 +256,12 @@ public class Sight : MonoBehaviour
     private float aim_time = 1f;
     private void aim()
     {
-        hit = Physics2D.Raycast(lock_line.origin, lock_line.direction, 10, hittable);
+        hit = Physics2D.Raycast(lock_line.origin, lock_line.direction, 50, hittable);
+        line.SetColors(Color.red, Color.red);
+        line.SetWidth(.01f, .01f);
+        line.SetPosition(0, new Vector2(hit.point.x, hit.point.y));
+        line.SetPosition(1, new Vector2(transform.position.x, transform.position.y + .5f));
+
 
         if (!started)
         {
@@ -256,6 +269,7 @@ public class Sight : MonoBehaviour
             movement.cancel(aim_time);
             StartCoroutine(coroutine);
             started = true;
+            movement.cancel(aim_time);
 }
 
         UnityEngine.Debug.DrawRay(lock_line.origin, lock_line.direction, Color.black);
@@ -263,12 +277,21 @@ public class Sight : MonoBehaviour
         if (paused)
             return;
 
-        state = State.SEARCH;
+        line.SetWidth(.02f, .02f);
+
+        if (player_in_range())
+            state = State.LOCKED_ON;
+        else
+        {
+            state = State.SEARCH;
+            if (is_smart)
+                swap_dir(Math.Sign(transform.localScale.x));
+        }
         started = false;
 
         if (hit && hit.collider.gameObject.name == "Player")
         {
-
+            player_script.takeDamage();
         }
     }
 
@@ -279,7 +302,7 @@ public class Sight : MonoBehaviour
         paused = false;
     }
 
-    private bool player_in_range()
+    public bool player_in_range()
     {
         if (cone.IsTouchingLayers(play_layer))
         {
@@ -306,6 +329,10 @@ public class Sight : MonoBehaviour
     }
     public void swap_dir(int dir)
     {
+        if(Math.Sign(dir) < 0)
+        {
+            dir = 0;
+        }
         cone_angle = 180 * dir;
         cone.transform.rotation = Quaternion.Euler(0, 0, cone_angle);
         base_angle = (180 * dir - 11.303f) * Mathf.PI / 180;
@@ -333,5 +360,42 @@ public class Sight : MonoBehaviour
     {
         blind = wait(time);
         StartCoroutine(blind);
+    }
+    public void contact_shoot()
+    {
+
+        hit = Physics2D.Raycast(ray.origin, new Vector2(MathF.Cos(cone_angle/180 * Mathf.PI), Mathf.Sin(cone_angle / 180 * Mathf.PI)), 50, hittable);
+        line.SetColors(Color.red, Color.red);
+        line.SetWidth(.01f, .01f);
+        line.SetPosition(0, new Vector2(hit.point.x, hit.point.y));
+        line.SetPosition(1, new Vector2(transform.position.x, transform.position.y + .5f));
+
+
+        if (!started)
+        {
+            coroutine = pause(aim_time);
+            movement.cancel(aim_time);
+            StartCoroutine(coroutine);
+            started = true;
+            movement.cancel(aim_time);
+        }
+
+        if (paused)
+            return;
+
+        if (player_in_range())
+            state = State.LOCKED_ON;
+        else
+        {
+            state = State.SEARCH;
+            if (is_smart)
+                swap_dir(Math.Sign(transform.localScale.x));
+        }
+        started = false;
+
+        if (hit && hit.collider.gameObject.name == "Player")
+        {
+            player_script.takeDamage();
+        }
     }
 }

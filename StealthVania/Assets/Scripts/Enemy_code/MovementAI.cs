@@ -67,6 +67,8 @@ public class MovementAI : MonoBehaviour
     }
     private void rangedAI()
     {
+        if (contact_box.IsTouchingLayers(7))
+            sight.contact_shoot();
         switch (state)
         {
             case State.IDLE:
@@ -141,7 +143,7 @@ public class MovementAI : MonoBehaviour
             body.velocity = new Vector2(accelerate(horizontal), body.velocity.y);
         else
             body.velocity = new Vector2(0, body.velocity.y);
-        if (!sight.get_sees_player())
+        if (!sight.player_in_range())
         {
             last_pos = player_pos.position;
             state = State.SEARCH;

@@ -1123,6 +1123,38 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 1949214614}
+    - target: {fileID: 1968313637098927596, guid: c8822277c7c8b05428beb35588517bca, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 1968313637098927596, guid: c8822277c7c8b05428beb35588517bca, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968313637098927596, guid: c8822277c7c8b05428beb35588517bca, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968313637098927596, guid: c8822277c7c8b05428beb35588517bca, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968313637098927596, guid: c8822277c7c8b05428beb35588517bca, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968313637098927596, guid: c8822277c7c8b05428beb35588517bca, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968313637098927596, guid: c8822277c7c8b05428beb35588517bca, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968313637098927596, guid: c8822277c7c8b05428beb35588517bca, type: 3}
+      propertyPath: m_Parameters.colorGradient.m_ColorSpace
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2137630908347448698, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.2
@@ -1181,15 +1213,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: player_pos
       value: 
       objectReference: {fileID: 1949214622}
+    - target: {fileID: 8485970477406245566, guid: c8822277c7c8b05428beb35588517bca, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8485970477406245566, guid: c8822277c7c8b05428beb35588517bca, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 8586909037927153791, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: offset
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586909037927153791, guid: c8822277c7c8b05428beb35588517bca, type: 3}
+      propertyPath: is_smart
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8586909037927153791, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: player_script
@@ -1415,6 +1459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smoke: {fileID: 0}
   PlayerBody: {fileID: 1949214620}
+  _hasSmoke: 0
   canSmoke: 1
   smokeTime: 3
   smokeCool: 10
@@ -1447,10 +1492,14 @@ MonoBehaviour:
   hurtbox: {fileID: 1949214619}
   tr: {fileID: 1949214615}
   sr: {fileID: 1949214621}
+  smoke: {fileID: 0}
   speed: 5
   move: 0
   jumpingPower: 5
   grounded: 0
+  _hasDash: 0
+  _hasInvis: 0
+  _hasSmoke: 0
   dashStrength: 5
   dashingTime: 0.2
   dashingCooldown: 1
@@ -1458,6 +1507,9 @@ MonoBehaviour:
   canInvis: 1
   invisCool: 5
   invisTime: 5
+  canSmoke: 0
+  smokeTime: 3
+  smokeCool: 10
   obstructed: 0
   Invinc: 0
   invincTime: 1

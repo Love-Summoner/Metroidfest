@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c760c7bb58688d441ab0781ae68bccf9
+guid: 99963fe7faeb72c4783c1e181697ddcc
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,58 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Player_attack
+  - name: Invis_icon
     originalName: 
-    pivot: {x: 0.34285715, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 75
-      width: 35
-      height: 63
-    spriteID: 405b25ed803c17b45bf3eb8c1d47e0dd
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 75}
-  - name: Player_attack_Frame_1
-    originalName: 
-    pivot: {x: 0.34285715, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 146
-      width: 35
-      height: 63
-    spriteID: 89377d59f9311c041bda4ec3adb7cac3
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 146}
-  - name: Player_attack_Frame_2
-    originalName: 
-    pivot: {x: 0.23076923, y: 0}
+    pivot: {x: 0.5, y: -0.7916667}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 52
-      height: 63
-    spriteID: e84c6304e0bf679438708c49ec29cf7f
+      width: 24
+      height: 24
+    spriteID: 012e80cdba305e94e9b8209e4fd4b82c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -181,99 +141,27 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Player_attack_Frame_3
-    originalName: 
-    pivot: {x: 0.34285715, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 64
-      y: 4
-      width: 35
-      height: 63
-    spriteID: ecc3a5540f3d6754a80b7759c47a9ba0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 64, y: 4}
-  - name: Player_attack_Frame_4
-    originalName: 
-    pivot: {x: 0.34285715, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 64
-      y: 75
-      width: 35
-      height: 63
-    spriteID: 8084644eab2daa84b8155cfa43b34cb3
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 64, y: 75}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 918929860
-    name: Player_attack
+    guid: -767860173
+    name: Invis_icon
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Player_attack_Frame_0
+    - name: Invis_icon
       frameIndex: 0
       cellRect:
-        x: 36
-        y: 0
-        width: 35
-        height: 63
-      spriteId: 405b25ed803c17b45bf3eb8c1d47e0dd
-    - name: Player_attack_Frame_1
-      frameIndex: 1
-      cellRect:
-        x: 36
-        y: 0
-        width: 35
-        height: 63
-      spriteId: 89377d59f9311c041bda4ec3adb7cac3
-    - name: Player_attack_Frame_2
-      frameIndex: 2
-      cellRect:
-        x: 36
-        y: 0
-        width: 52
-        height: 63
-      spriteId: e84c6304e0bf679438708c49ec29cf7f
-    - name: Player_attack_Frame_3
-      frameIndex: 3
-      cellRect:
-        x: 36
-        y: 0
-        width: 35
-        height: 63
-      spriteId: ecc3a5540f3d6754a80b7759c47a9ba0
-    - name: Player_attack_Frame_4
-      frameIndex: 4
-      cellRect:
-        x: 36
-        y: 0
-        width: 35
-        height: 63
-      spriteId: 8084644eab2daa84b8155cfa43b34cb3
+        x: 20
+        y: 19
+        width: 24
+        height: 24
+      spriteId: 012e80cdba305e94e9b8209e4fd4b82c
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 96, y: 64}
+  canvasSize: {x: 64, y: 64}

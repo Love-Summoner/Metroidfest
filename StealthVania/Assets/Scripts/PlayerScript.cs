@@ -87,7 +87,7 @@ public class PlayerScript : MonoBehaviour
         {
             PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, PlayerBody.velocity.y * 0.5f);
         }
-        if (Input.GetKeyDown(KeyCode.Shift) && canDash)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartCoroutine(Dash());
         }

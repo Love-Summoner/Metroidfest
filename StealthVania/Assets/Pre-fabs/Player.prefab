@@ -395,16 +395,23 @@ MonoBehaviour:
   deathLayer:
     serializedVersion: 2
     m_Bits: 0
+  checkpointLayer:
+    serializedVersion: 2
+    m_Bits: 0
   smoke_layer:
     serializedVersion: 2
     m_Bits: 64
   hurtbox: {fileID: 5635321063592863293}
   tr: {fileID: 6326079690163554985}
   sr: {fileID: 6443219485604523874}
+  smoke: {fileID: 0}
   speed: 5
   move: 0
   jumpingPower: 8
   grounded: 0
+  _hasDash: 0
+  _hasInvis: 0
+  _hasSmoke: 0
   dashStrength: 10
   dashingTime: 0.2
   dashingCooldown: 1
@@ -412,6 +419,9 @@ MonoBehaviour:
   canInvis: 1
   invisCool: 5
   invisTime: 5
+  canSmoke: 0
+  smokeTime: 3
+  smokeCool: 10
   obstructed: 0
   Invinc: 0
   invincTime: 1
@@ -431,6 +441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smoke: {fileID: 0}
   PlayerBody: {fileID: 6141132476436679232}
+  _hasSmoke: 0
   canSmoke: 1
   smokeTime: 3
   smokeCool: 10
@@ -569,7 +580,7 @@ Animator:
   m_GameObject: {fileID: 8498547450556660353}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 1565823708324498528, guid: 8e3790189f5762b43874bea766bcc023, type: 3}
+  m_Controller: {fileID: 9100000, guid: 54f8edb7eb9df15419a528b42abc1c97, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -592,7 +603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ee3adbb173a94c499414bf947be0a15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walk: {fileID: 8892339489025148431}
+  animation_control: {fileID: 8892339489025148431}
   groundcheck: {fileID: 503852281727360719}
   groundLayer:
     serializedVersion: 2

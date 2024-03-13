@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     private bool attacking = false;
     private float attackTime = 0.25f;
     private float timer = 0f;
+    [SerializeField] private Walk_code_player anims;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            anims.attack_anim();
             attack();
         }
         if (attacking)

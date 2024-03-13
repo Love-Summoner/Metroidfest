@@ -10,6 +10,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask attackLayer;
     [SerializeField] private LayerMask deathLayer;
+    [SerializeField] private LayerMask checkpointLayer;
     [SerializeField] private LayerMask smoke_layer;
     [SerializeField] private BoxCollider2D hurtbox;
     [SerializeField] private TrailRenderer tr;
@@ -55,10 +56,16 @@ public class PlayerScript : MonoBehaviour
     public int maxHealth = 5;
     public int health = 5;
 
+    private Vector3 respawnPoint;
+
     //for detecting if the player is seen
     private bool seen = false;
 
     // Update is called once per frame.
+    void start()
+    {
+        respawnPoint = transform.position;
+    }
     void Update()
     {
         if(Invis)
@@ -80,15 +87,15 @@ public class PlayerScript : MonoBehaviour
         {
             PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, PlayerBody.velocity.y * 0.5f);
         }
-        if (Input.GetKeyDown(KeyCode.Q) && canDash)
+        if (Input.GetKeyDown(KeyCode.Shift) && canDash)
         {
             StartCoroutine(Dash());
         }
-        if(Input.GetKeyDown(KeyCode.E) && canInvis && !seen)
+        if(Input.GetKeyDown(KeyCode.Q) && canInvis && !seen)
         {
             StartCoroutine(Invisibility());
         }
-        if (Input.GetKeyDown(KeyCode.R) && canSmoke)
+        if (Input.GetKeyDown(KeyCode.E) && canSmoke)
         {
             StartCoroutine(Smokescreen());
         }
@@ -116,9 +123,14 @@ public class PlayerScript : MonoBehaviour
             }*/
             takeDamage();
         }
-        if (hurtbox.IsTouchingLayers(deathLayer))
+        if (hurtbox.IsTouchingLayers(checkpointLayer))
         {
-            Death();
+            respawnPoint = transform.position;
+            health = maxHealth;
+        }
+        else if (hurtbox.IsTouchingLayers(deathLayer))
+        {
+            transform.position = respawnPoint;
         }
 
 

@@ -7,8 +7,8 @@ public class SmokeScreen : MonoBehaviour
     [SerializeField] private GameObject smoke;
     [SerializeField] public Rigidbody2D PlayerBody;
 
-
-    public bool canSmoke = true;
+    public bool _hasSmoke = false;
+    public bool canSmoke = false;
     public float smokeTime = 3f;
     public float smokeCool = 10f;
 

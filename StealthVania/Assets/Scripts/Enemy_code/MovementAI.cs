@@ -101,8 +101,11 @@ public class MovementAI : MonoBehaviour
     private bool move_right = true;
     private void idle()
     {
-        if(sight.get_sees_player())
+
+        if (sight.get_sees_player())
+        {
             state = State.CHASE;
+        }
         if (!has_path)
             return;
         if (move_right)
@@ -154,7 +157,7 @@ public class MovementAI : MonoBehaviour
         else if (player_pos.position.y <= transform.position.y+.5f) 
         {
             body.velocity = new Vector2(0, body.velocity.y);
-            Instantiate(attack, new Vector2(transform.position.x+.2f*MathF.Sign(transform.localScale.x), transform.position.y), new Quaternion(0, 0, MathF.Sign(transform.localScale.x)-1, 0));
+            Instantiate(attack, new Vector2(transform.position.x+.2f*MathF.Sign(transform.localScale.x), transform.position.y+.4f), new Quaternion(0, 0, MathF.Sign(transform.localScale.x)-1, 0));
             sight.delay(.3f);
             cancel(.5f);
         }
@@ -247,5 +250,10 @@ public class MovementAI : MonoBehaviour
     {
         coroutine = pause(time);
         StartCoroutine(coroutine);
+    }
+    private void Alert()
+    {
+        last_pos = player_pos.position;
+        state = State.SEARCH;
     }
 }

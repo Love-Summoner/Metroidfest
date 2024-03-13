@@ -5,15 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
-    [SerializeField] public Rigidbody2D PlayerBody;
-    [SerializeField] public Transform groundCheck;
-    [SerializeField] public LayerMask groundLayer;
-    [SerializeField] public LayerMask attackLayer;
+    [SerializeField] private Rigidbody2D PlayerBody;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask attackLayer;
     [SerializeField] private LayerMask deathLayer;
     [SerializeField] private LayerMask smoke_layer;
     [SerializeField] private BoxCollider2D hurtbox;
     [SerializeField] private TrailRenderer tr;
     [SerializeField] private SpriteRenderer sr;
+
+    private SmokeScreen SmokeScript;
 
     public float speed;
     public float move;
@@ -21,16 +23,20 @@ public class PlayerScript : MonoBehaviour
     public bool grounded;
     private bool isFacingRight = false;
 
+    public bool _hasDash = false;
+    public bool _hasInvis = false;
+    public bool _hasSmoke = false;
+
     //Dashing values
     public float dashStrength;
     public float dashingTime;
     public float dashingCooldown;
-    private bool canDash = true;
+    private bool canDash = false;
     private bool isDashing =  false;
 
     //Invisibility values
     public bool Invis = false;
-    public bool canInvis = true;
+    public bool canInvis = false;
     public float invisCool = 5f;
     public float invisTime = 1f;
 
@@ -87,6 +93,7 @@ public class PlayerScript : MonoBehaviour
         }
         if (hurtbox.IsTouchingLayers(attackLayer))
         {
+            /*
             StartCoroutine(invincible());
             if (!Invinc)
             {
@@ -96,7 +103,8 @@ public class PlayerScript : MonoBehaviour
             if (health < 1)
             {
                 Death();
-            }
+            }*/
+            takeDamage();
         }
         if (hurtbox.IsTouchingLayers(deathLayer))
         {
@@ -173,5 +181,54 @@ public class PlayerScript : MonoBehaviour
     public bool is_seen()
     {
         return seen;
+    }
+
+    public void getDash()
+    {
+        _hasDash = true;
+        canDash = true;
+    }
+
+    public void getInvis()
+    {
+        _hasInvis = true;
+        canInvis = true;
+
+    }
+
+    public void getSmoke()
+    {
+        SmokeScript._hasSmoke = true;
+        SmokeScript.canSmoke = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Dash"))
+        {
+            getDash();
+            Destroy(other.gameObject);
+        }else if (other.gameObject.CompareTag("Invis"))
+        {
+            getInvis();
+            Destroy(other.gameObject);
+        }else if (other.gameObject.CompareTag("Smoke"))
+        {
+            getSmoke();
+            Destroy(other.gameObject);
+        }
+    }
+    public void takeDamage()
+    {
+        StartCoroutine(invincible());
+        if (!Invinc)
+        {
+            Invinc = true;
+            health -= 1;
+        }
+        if (health < 1)
+        {
+            Death();
+        }
     }
 }

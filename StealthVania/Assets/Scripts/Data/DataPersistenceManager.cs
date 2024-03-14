@@ -40,7 +40,7 @@ public class DataPersistenceManager : MonoBehaviour
     {
         this.gameData = dataHandler.Load();
 
-        if(this.gameData == null)
+        if(this.gameData == null || MainMenu.newgame == true)
         {
             Debug.Log("No Game data to load. Creating new game.");
             NewGame();

@@ -35,6 +35,12 @@ public class Walk_code_player : MonoBehaviour
         wait = Interrupt(.4f);
         StartCoroutine(wait);
     }
+    public void dash_anim(float dtime)
+    {
+        animation_control.Play("Dash");
+        wait = Interrupt(.4f);
+        StartCoroutine(wait);
+    }
 
     private IEnumerator Interrupt(float time)
     {

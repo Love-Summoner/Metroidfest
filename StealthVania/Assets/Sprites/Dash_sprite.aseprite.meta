@@ -123,15 +123,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Dash_sprite
     originalName: 
-    pivot: {x: 0.5625, y: -0.049180325}
+    pivot: {x: 0.5744681, y: -0.07272727}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 48
-      height: 61
+      width: 47
+      height: 55
     spriteID: bbf8ca0cd37820548b441e3d9ffdd7cc
     spriteBone: []
     spriteOutline: []
@@ -141,6 +141,26 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: Dash_sprite_Frame_1
+    originalName: 
+    pivot: {x: 0.5744681, y: -0.07272727}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 67
+      width: 47
+      height: 55
+    spriteID: 1214b828807a30146bb736ea864f5bb0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 67}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -150,14 +170,22 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: Dash_sprite
+    - name: Dash_sprite_Frame_0
       frameIndex: 0
       cellRect:
         x: 5
-        y: 3
-        width: 48
-        height: 61
+        y: 4
+        width: 47
+        height: 55
       spriteId: bbf8ca0cd37820548b441e3d9ffdd7cc
+    - name: Dash_sprite_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 5
+        y: 4
+        width: 47
+        height: 55
+      spriteId: 1214b828807a30146bb736ea864f5bb0
     linkedCells: []
     parentIndex: -1
   platformSettings: []

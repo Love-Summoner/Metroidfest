@@ -351,6 +351,7 @@ MonoBehaviour:
   hurtbox: {fileID: 5635321063592863293}
   tr: {fileID: 6326079690163554985}
   sr: {fileID: 6443219485604523874}
+  anims: {fileID: 8112554762510684223}
   dpm: {fileID: 0}
   smoke: {fileID: 0}
   speed: 5
@@ -363,6 +364,7 @@ MonoBehaviour:
   dashStrength: 10
   dashingTime: 0.2
   dashingCooldown: 1
+  canDash: 0
   Invis: 0
   canInvis: 1
   invisCool: 5

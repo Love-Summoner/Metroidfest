@@ -35,12 +35,12 @@ public class PlayerStatIndication : MonoBehaviour
         {
             if(i < player.GetComponent<PlayerScript>().health)
             {
-                changeColor(true);
+                changeColorH(true);
                 health[i].GetComponent<Image>().color = color;
             }
             else
             {
-                changeColor(false);
+                changeColorH(false);
                 health[i].GetComponent <Image>().color = color;
             }
         }
@@ -51,7 +51,7 @@ public class PlayerStatIndication : MonoBehaviour
         for(int i = 0;i < abilities.Length; i++)
         {
             //Dash
-            if(i == 0 /*&& player.GetComponent<PlayerScript>().canDash*/)
+            if(i == 0 && player.GetComponent<PlayerScript>().canDash)
             {
                 changeColor(false);
                 abilities[i].GetComponent<Image>().color = color;
@@ -75,6 +75,22 @@ public class PlayerStatIndication : MonoBehaviour
     }
 
     private void changeColor(bool val)
+    {
+        //Is Active
+        if (val)
+        {
+            color.g = .25f;
+            color.b = .25f;
+            color.r = .25f;
+            color.a = .5f;
+        }
+        else
+        {
+            color = Color.white;
+            color.a = 1f;
+        }
+    }
+    private void changeColorH(bool val)
     {
         //Is Active
         if (val)

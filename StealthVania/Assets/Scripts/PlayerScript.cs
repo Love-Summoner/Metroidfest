@@ -15,6 +15,7 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
     [SerializeField] private BoxCollider2D hurtbox;
     [SerializeField] private TrailRenderer tr;
     [SerializeField] private SpriteRenderer sr;
+    [SerializeField] private Walk_code_player anims;
 
     public DataPersistenceManager dpm;
 
@@ -36,7 +37,7 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
     public float dashStrength;
     public float dashingTime;
     public float dashingCooldown;
-    private bool canDash = false;
+    public bool canDash = false;
     private bool isDashing =  false;
 
     //Invisibility values
@@ -190,6 +191,7 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
     
     private IEnumerator Dash()
     {
+        anims.dash_anim(dashingTime);
         canDash = false;
         isDashing = true;
         float originalGravity = PlayerBody.gravityScale;

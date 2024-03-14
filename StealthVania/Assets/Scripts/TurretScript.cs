@@ -39,5 +39,7 @@ public class TurretScript : MonoBehaviour
     void shoot()
     {
         Instantiate(bullet, bulletPos.position, Quaternion.identity);
+        Vector2 unit = player.transform.position - transform.position;
+        transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan(unit.x/unit.y));
     }
 }

@@ -63,7 +63,7 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
     private bool seen = false;
 
     // Update is called once per frame.
-    void start()
+    void Start()
     {
         respawnPoint = transform.position;
     }

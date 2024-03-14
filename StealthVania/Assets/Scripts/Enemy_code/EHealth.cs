@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EHealth : MonoBehaviour
@@ -10,6 +11,7 @@ public class EHealth : MonoBehaviour
     [SerializeField] private GameObject Player;
     private float invinc_time = .5f;
     [SerializeField] private int health = 4;
+    [SerializeField] private Sprite dead;
     private bool invinc = false;
     // Start is called before the first frame update
     // Update is called once per frame
@@ -50,6 +52,17 @@ public class EHealth : MonoBehaviour
 
     private void death()
     {
-        gameObject.SetActive(false);
+        gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
+        gameObject.GetComponent<Animator>().enabled = false;
+        gameObject.GetComponent<MovementAI>().enabled = false;
+        gameObject.GetComponent<Sight>().enabled = false;
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        gameObject.GetComponent<EWalk_code>().enabled = false;
+        gameObject.GetComponent<EHealth>().enabled = false;
+        gameObject.GetComponent<SpriteRenderer>().sprite = dead;
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(.5f, .5f, .5f, 1f);
+        gameObject.GetComponent<LineRenderer>().enabled = false;
+        transform.position = new Vector3(transform.position.x, transform.position.y, 1);
     }
 }

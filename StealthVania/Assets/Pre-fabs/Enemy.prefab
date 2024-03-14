@@ -159,7 +159,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -398,8 +398,9 @@ MonoBehaviour:
   attack_layer:
     serializedVersion: 2
     m_Bits: 256
-  Player: {fileID: 0}
+  Player: {fileID: -2253911629886400664, guid: 356f9df75d993214c9617585574cfa1c, type: 3}
   health: 4
+  dead: {fileID: 4354730812372456864, guid: 356f9df75d993214c9617585574cfa1c, type: 3}
 --- !u!114 &5711130942842248314
 MonoBehaviour:
   m_ObjectHideFlags: 0

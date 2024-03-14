@@ -5,14 +5,19 @@ using System.Linq;
 
 public class DataPersistenceManager : MonoBehaviour
 {
+    [Header("File Storage Config")]
+    [SerializeField] private string fileName;
+
     private GameData gameData;
 
     private List<IDataPersistence> dataPersistenceObjects;
+    private FileDataHandler dataHandler;
     
     public static DataPersistenceManager instance { get; private set; }
 
     private void Start()
     {
+        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
         LoadGame();
     }
@@ -33,6 +38,8 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void LoadGame()
     {
+        this.gameData = dataHandler.Load();
+
         if(this.gameData == null)
         {
             Debug.Log("No Game data to load. Creating new game.");
@@ -43,7 +50,6 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersOb.LoadData(gameData);
         }
-        Debug.Log("Loaded progress = " + gameData.progress);
 
 
     }
@@ -54,7 +60,8 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersOb.SaveData(ref gameData);
         }
-        Debug.Log("Saved progress = " + gameData.progress);
+
+        dataHandler.Save(gameData);
     }
 
     private void OnApplicationQuit()

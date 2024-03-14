@@ -30,6 +30,7 @@ public class MovementAI : MonoBehaviour
     [SerializeField] private LayerMask obstruction;
     [SerializeField] private GameObject attack;
     [SerializeField] private BoxCollider2D contact_box;
+    [SerializeField] private EWalk_code anim;
 
     private bool has_path;
     private IEnumerator coroutine;
@@ -154,7 +155,7 @@ public class MovementAI : MonoBehaviour
         float separation = player_pos.position.x - transform.position.x;
         int horizontal = Math.Sign(separation);
 
-        if (MathF.Abs(separation) > 1)
+        if (MathF.Abs(separation) > .6f)
             body.velocity = new Vector2(accelerate(horizontal), body.velocity.y);
         else if (player_pos.position.y <= transform.position.y+.5f) 
         {
@@ -162,6 +163,7 @@ public class MovementAI : MonoBehaviour
             Instantiate(attack, new Vector2(transform.position.x+.2f*MathF.Sign(transform.localScale.x), transform.position.y+.4f), new Quaternion(0, 0, MathF.Sign(transform.localScale.x)-1, 0));
             sight.delay(.3f);
             cancel(.5f);
+            anim.attack_anim();
         }
         if (!sight.get_sees_player())
         {

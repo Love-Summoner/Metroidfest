@@ -170,6 +170,7 @@ public class Sight : MonoBehaviour
     bool top_hit = false, bottom_hit = false, right = false, repeat = false;
     private void search()
     {
+        new_origin = new Vector2(transform.position.x, transform.position.y + offset);
         cone.transform.rotation = Quaternion.Euler(0, 0, cone_angle);
         ray = new Ray2D(new_origin, new Vector2(Mathf.Cos(cone_angle * Mathf.PI / 180), Mathf.Sin(cone_angle * Mathf.PI / 180)));
         hit = Physics2D.Raycast(ray.origin, ray.direction, 10, hittable);
@@ -200,7 +201,7 @@ public class Sight : MonoBehaviour
         {
             left_search();
         }
-        UnityEngine.Debug.DrawRay(transform.position, new Vector2(Mathf.Cos(cone_angle*Mathf.PI/180), Mathf.Sin(cone_angle * Mathf.PI / 180)), Color.green);
+        UnityEngine.Debug.DrawRay(new_origin, new Vector2(Mathf.Cos(cone_angle*Mathf.PI/180), Mathf.Sin(cone_angle * Mathf.PI / 180)), Color.green);
     }
     private void right_search()
     {

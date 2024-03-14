@@ -127224,10 +127224,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 599730044}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f754e599a5d2bb4382d0958edbfa367, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d71789f49c01c14abaf63279724f4bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 2905027285516594958, guid: 666e55c21b6789344b07f1a76ad59a85, type: 3}
+  bullet: {fileID: 2905027285516594958, guid: b0174512009aae44c9a4456309ba3ec9, type: 3}
   bulletPos: {fileID: 942618211}
   room: {fileID: 323187326}
   playerLayer:

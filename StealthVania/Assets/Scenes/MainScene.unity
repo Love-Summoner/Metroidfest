@@ -126442,11 +126442,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: is_ranged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: player_pos
@@ -127351,11 +127351,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: is_ranged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: player_pos
@@ -127606,11 +127606,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: is_ranged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: player_pos
@@ -127691,11 +127691,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: is_ranged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: player_pos
@@ -127772,11 +127772,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: is_ranged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: player_pos
@@ -127853,11 +127853,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: is_ranged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: player_pos
@@ -128220,11 +128220,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: is_ranged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: player_pos
@@ -128848,11 +128848,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: is_ranged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: player_pos
@@ -129014,11 +129014,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: is_ranged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: player_pos
@@ -129306,11 +129306,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: is_ranged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: player_pos
@@ -129391,11 +129391,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: is_ranged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5711130942842248314, guid: c8822277c7c8b05428beb35588517bca, type: 3}
       propertyPath: player_pos

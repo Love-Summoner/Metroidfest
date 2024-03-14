@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerScript : MonoBehaviour
+public class PlayerScript : MonoBehaviour, IDataPersistence
 {
     [SerializeField] private Rigidbody2D PlayerBody;
     [SerializeField] private Transform groundCheck;
@@ -150,7 +150,7 @@ public class PlayerScript : MonoBehaviour
 
     private bool isGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        return Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
     }
 
     private void Flip()
@@ -266,5 +266,14 @@ public class PlayerScript : MonoBehaviour
         {
             Death();
         }
+    }
+    public void LoadData(GameData data)
+    {
+
+    }
+
+    public void SaveData(ref GameData data)
+    {
+
     }
 }

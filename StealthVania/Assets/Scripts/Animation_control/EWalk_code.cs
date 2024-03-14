@@ -11,7 +11,7 @@ public class EWalk_code : MonoBehaviour
 
     void Update()
     {
-        if (Mathf.Abs(body.velocity.x) > .1f && body.velocity.y == 0 )
+        if (Mathf.Abs(body.velocity.x) > 0 && body.velocity.y > -.1f )
             walk.enabled = true;
         else
             walk.enabled = false;

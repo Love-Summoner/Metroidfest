@@ -129,7 +129,7 @@ public class Sight : MonoBehaviour
     {
         if (movement.is_ranged)
         {
-            line.SetColors(Color.black, Color.black);
+            line.SetColors(Color.green, Color.green);
             line.SetWidth(.01f, .01f);
             line.SetPosition(0, new Vector2(player.transform.position.x, player.transform.position.y + .5f));
             line.SetPosition(1, new Vector2(transform.position.x, transform.position.y + .5f));

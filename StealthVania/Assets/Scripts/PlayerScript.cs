@@ -16,6 +16,8 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
     [SerializeField] private TrailRenderer tr;
     [SerializeField] private SpriteRenderer sr;
 
+    public DataPersistenceManager dpm;
+
     //[SerializeField] private SmokeScreen SmokeScript;
     [SerializeField] private GameObject smoke;
 
@@ -58,6 +60,8 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
 
     private Vector3 respawnPoint;
     private int progress;
+    private float respawnx;
+    private float respawny;
 
     //for detecting if the player is seen
     private bool seen = false;
@@ -127,7 +131,12 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
         if (hurtbox.IsTouchingLayers(checkpointLayer))
         {
             respawnPoint = transform.position;
+            respawnx = respawnPoint.x;
+            respawny = respawnPoint.y;
             health = maxHealth;
+            dpm.SaveGame();
+            //save
+
         }
         else if (hurtbox.IsTouchingLayers(deathLayer))
         {
@@ -286,10 +295,14 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
         {
             getSmoke();
         }
+        this.respawnPoint = new Vector3(data.respawnx, data.respawny, 0);
+        transform.position = new Vector3(data.respawnx, data.respawny, 0);
     }
 
     public void SaveData(ref GameData data)
     {
         data.progress = this.progress;
+        data.respawnx = this.respawnx;
+        data.respawny = this.respawny;
     }
 }

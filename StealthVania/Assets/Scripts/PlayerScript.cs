@@ -113,7 +113,7 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
         {
             obstructed = false;
         }
-        if (hurtbox.IsTouchingLayers(attackLayer))
+        /*if (hurtbox.IsTouchingLayers(attackLayer))
         {
             /*
             StartCoroutine(invincible());
@@ -125,9 +125,10 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
             if (health < 1)
             {
                 Death();
-            }*/
+            }
             takeDamage();
-        }
+
+        }*/
         if (hurtbox.IsTouchingLayers(checkpointLayer))
         {
             respawnPoint = transform.position;
@@ -265,8 +266,30 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
             getSmoke();
             Destroy(other.gameObject);
             progress = 3;
+        }else if (other.gameObject.layer == 9) //enemy attack
+        {
+            float deltax = transform.position.x - other.transform.position.x;
+            if (deltax < 0)
+            {
+                PlayerBody.velocity = new Vector2(-speed*20, 0);
+            }
+            else
+            {
+                PlayerBody.velocity = new Vector2(speed*20, 0);
+            }
+            takeDamage();
+            StartCoroutine(flashhit());
         }
     }
+    
+    public IEnumerator flashhit()
+    {
+        Color playercolor = sr.color;
+        sr.color = Color.red;
+        yield return new WaitForSeconds(.5f);
+        sr.color = playercolor;
+    }
+
     public void takeDamage()
     {
         StartCoroutine(invincible());
@@ -274,6 +297,7 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
         {
             Invinc = true;
             health -= 1;
+
         }
         if (health < 1)
         {

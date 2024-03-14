@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    public static bool newgame = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,11 +36,14 @@ public class MainMenu : MonoBehaviour
         {
             File.Delete("Spawn.txt");
         }
+        //DataPersistenceManager.instance.NewGame();
+        newgame = true;
         SceneManager.LoadSceneAsync("MainScene");
     }
 
     public void Continue ()
     {
+        newgame = false;
         SceneManager.LoadSceneAsync("MainScence");
     }
 

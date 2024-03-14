@@ -197,11 +197,11 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
         float originalGravity = PlayerBody.gravityScale;
         PlayerBody.gravityScale = 0f;
         PlayerBody.velocity = new Vector2(transform.localScale.x * dashStrength, 0f);
-        tr.emitting = true;
+        //tr.emitting = true;
         yield return new WaitForSeconds(dashingTime);
         isDashing = false;
         PlayerBody.gravityScale = originalGravity;
-        tr.emitting = false;
+        //tr.emitting = false;
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
         
@@ -270,7 +270,7 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
             progress = 3;
         }else if (other.gameObject.layer == 9) //enemy attack
         {
-            float deltax = transform.position.x - other.transform.position.x;
+            /*float deltax = transform.position.x - other.transform.position.x;
             if (deltax < 0)
             {
                 PlayerBody.velocity = new Vector2(-speed*20, 0);
@@ -278,7 +278,7 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
             else
             {
                 PlayerBody.velocity = new Vector2(speed*20, 0);
-            }
+            }*/
             takeDamage();
             StartCoroutine(flashhit());
         }

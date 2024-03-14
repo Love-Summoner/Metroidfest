@@ -57,6 +57,7 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
     public int health = 5;
 
     private Vector3 respawnPoint;
+    private int progress;
 
     //for detecting if the player is seen
     private bool seen = false;
@@ -244,14 +245,17 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
         {
             getDash();
             Destroy(other.gameObject);
+            progress = 1;
         }else if (other.gameObject.CompareTag("Invis"))
         {
             getInvis();
             Destroy(other.gameObject);
+            progress = 2;
         }else if (other.gameObject.CompareTag("Smoke"))
         {
             getSmoke();
             Destroy(other.gameObject);
+            progress = 3;
         }
     }
     public void takeDamage()
@@ -269,11 +273,23 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
     }
     public void LoadData(GameData data)
     {
-
+        this.progress = data.progress;
+        if (progress >= 1)
+        {
+            getDash();
+        }
+        if (progress >= 2)
+        {
+            getInvis();
+        }
+        if (progress == 3)
+        {
+            getSmoke();
+        }
     }
 
     public void SaveData(ref GameData data)
     {
-
+        data.progress = this.progress;
     }
 }

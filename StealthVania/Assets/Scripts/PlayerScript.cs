@@ -294,7 +294,7 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
     {
         sr.color = Color.red;
         yield return new WaitForSeconds(.5f);
-        sr.color = playercolor;
+        sr.color = playerColor;
     }
 
     public void takeDamage()

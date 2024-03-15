@@ -47,7 +47,6 @@ public class Sight : MonoBehaviour
         if (starts_backwards)
             swap_dir(1);
         ray = new Ray2D(new Vector2(transform.position.x, transform.position.y + offset), new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)));
-        UnityEngine.Debug.Log(ray.direction);
     }
     private void Update()
     {

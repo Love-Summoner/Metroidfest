@@ -33,7 +33,7 @@ public class DataPersistenceManager : MonoBehaviour
     
     public void NewGame()
     {
-        this.gameData = null;
+        this.gameData = new GameData();
     }
 
     public void LoadGame()
@@ -42,8 +42,10 @@ public class DataPersistenceManager : MonoBehaviour
 
         if(this.gameData == null || MainMenu.newgame == true)
         {
+            
             Debug.Log("No Game data to load. Creating new game.");
             NewGame();
+            return;
         }
         //push loaded data to other scripts
         foreach (IDataPersistence dataPersOb in dataPersistenceObjects)

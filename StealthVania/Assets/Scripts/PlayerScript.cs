@@ -64,6 +64,8 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
     private float respawnx;
     private float respawny;
 
+    public Color playerColor;
+
     //for detecting if the player is seen
     private bool seen = false;
 
@@ -71,6 +73,7 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
     void Start()
     {
         respawnPoint = transform.position;
+        playerColor = sr.color;
     }
     void Update()
     {
@@ -288,7 +291,6 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
     
     public IEnumerator flashhit()
     {
-        Color playercolor = sr.color;
         sr.color = Color.red;
         yield return new WaitForSeconds(.5f);
         sr.color = playercolor;

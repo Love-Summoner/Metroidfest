@@ -10,11 +10,13 @@ public class PlayerAttack : MonoBehaviour
     private float attackTime = 0.25f;
     private float timer = 0f;
     [SerializeField] private Walk_code_player anims;
+    private PlayerScript player;
 
     // Start is called before the first frame update
     void Start()
     {
         attackArea = transform.GetChild(1).gameObject; 
+        player = gameObject.GetComponent<PlayerScript>();
     }
 
     // Update is called once per frame
@@ -24,6 +26,7 @@ public class PlayerAttack : MonoBehaviour
         {
             anims.attack_anim();
             attack();
+            player.invis_interrupt();
         }
         if (attacking)
         {

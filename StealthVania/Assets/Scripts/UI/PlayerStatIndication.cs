@@ -61,7 +61,7 @@ public class PlayerStatIndication : MonoBehaviour
                 changeColor(false);
                 abilities[i].GetComponent<Image>().color = color;
             }//Smoke
-            else if(i == 2 && player.GetComponent<SmokeScreen>().canSmoke)
+            else if(i == 2 && player.GetComponent<PlayerScript>().canSmoke)
             {
                 changeColor(false);
                 abilities[i].GetComponent<Image>().color = color;

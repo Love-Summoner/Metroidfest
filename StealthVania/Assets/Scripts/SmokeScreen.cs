@@ -21,7 +21,7 @@ public class SmokeScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && canSmoke)
+        if (Input.GetKeyDown(KeyCode.E) && canSmoke)
         {
             StartCoroutine(Smokescreen());
         }

@@ -12,10 +12,12 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
     [SerializeField] private LayerMask deathLayer;
     [SerializeField] private LayerMask checkpointLayer;
     [SerializeField] private LayerMask smoke_layer;
+    [SerializeField] private LayerMask Enemy_layer;
     [SerializeField] private BoxCollider2D hurtbox;
     [SerializeField] private TrailRenderer tr;
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private Walk_code_player anims;
+    [SerializeField] private Boss_room_enter special_death;
 
     public DataPersistenceManager dpm;
 
@@ -100,7 +102,7 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
         {
             StartCoroutine(Dash());
         }
-        if(Input.GetKeyDown(KeyCode.Q) && canInvis && !seen)
+        if(Input.GetKeyDown(KeyCode.Q) && canInvis && !hurtbox.IsTouchingLayers(Enemy_layer))
         {
             StartCoroutine(Invisibility());
         }
@@ -157,6 +159,7 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
         transform.position = respawnPoint;
         gameObject.SetActive(true);
         health = maxHealth;
+        special_death.Reset();
     }
 
     private IEnumerator invincible()
@@ -192,8 +195,13 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
         yield return new WaitForSeconds(invisCool);
         canInvis = true;
     }
-    
-    
+    public void invis_interrupt()
+    {
+        Invis = false;
+        sr.color = new Color(1f, 1f, 1f, 1f);
+    }
+
+
     private IEnumerator Dash()
     {
         anims.dash_anim(dashingTime);

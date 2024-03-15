@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,11 @@ public class BHealth : MonoBehaviour
     {
         if (Basic_hurt.IsTouchingLayers(attack_layer))
         {
+            if (!sight.get_sees_player() && !invinc)
+                if (Math.Sign(transform.localScale.x) == 1)
+                        sight.swap_dir(1);
+                else if (Math.Sign(transform.localScale.x) == -1)
+                    sight.swap_dir(0);
             if (sight.get_sees_player())
             {
                 Player.GetComponent<Rigidbody2D>().AddForce(new Vector2(100 * transform.localScale.x, 0));

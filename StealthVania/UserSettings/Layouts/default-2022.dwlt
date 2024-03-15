@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 1117
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Scene
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 321}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 199
+  controlID: 116
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -94,8 +94,8 @@ MonoBehaviour:
     y: 0
     width: 244
     height: 766
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -314,7 +314,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 144802
+  m_LastSelectedObjectID: -7214
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -515,7 +515,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Scripts/UI
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -523,16 +523,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Scripts/UI
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Truelove.DESKTOP-TMF37E8\Documents\Gamedev\GameJams\MetroidvaniaMonth\Metroidfest\StealthVania
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: c0640000
-    m_LastClickedID: 25792
-    m_ExpandedIDs: 00000000ac640000c264000000ca9a3b
+    scrollPos: {x: 0, y: 44}
+    m_SelectedIDs: 16650000
+    m_LastClickedID: 25878
+    m_ExpandedIDs: 00000000d2640000f064000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -560,7 +560,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000ac640000
+    m_ExpandedIDs: 00000000d2640000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -657,7 +657,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 154
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
@@ -699,10 +699,10 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 268}
-      m_SelectedIDs: 685b0200
-      m_LastClickedID: 154472
-      m_ExpandedIDs: 963efeff6042feffa842feff5244feff6444feff664afeff864afeff404bfeff1c4dfeff5e4efeff7c50feff1873feff5e79feff6079feff5e85feff34affeff36affeffdeb2feff28b3feffd2b4feffd8bafefffcbafeff56bcfeff2ee6feff4eecfeffe6f6feff6cf7feff50fbfeff96fbfeff38fdfeff3603ffff5203ffffaa3dffffe646ffff684cffff905fffffc26affff746bffff146cffffde72ffff2473ffffca74fffff87affff187bffff5684fffff487fffffa90ffffe2b1ffff18b3ffffa8b3ffff72baffff52bbffff94c3ffff96f9fffff8faffffc46100003e6300007e0101008416010024c7010092eb0100101102007c560200b4560200ba560200e05c0200
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 38c9fffff4c9ffff8ecaffff06cbffffc0ccffff2ecdffffaacdffffded4ffff16fbffffa262000042630000a4a5000028a60000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1108,9 +1108,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 155.00858, y: 9.509964, z: 1.2326212}
+    m_Target: {x: 88.02324, y: 26.668743, z: 0.17934832}
     speed: 2
-    m_Value: {x: 155.02634, y: 9.525019, z: 1.2298456}
+    m_Value: {x: 88.02324, y: 26.668743, z: 0.17934832}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1160,9 +1160,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 5.890303
+    m_Target: 106.39197
     speed: 2
-    m_Value: 6.1678567
+    m_Value: 106.39197
   m_Ortho:
     m_Target: 1
     speed: 2

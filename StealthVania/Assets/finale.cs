@@ -12,7 +12,7 @@ public class finale : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            SceneManager.LoadScene("ThanksScene");
+            SceneManager.LoadSceneAsync("ThanksScene");
         }
     }
 }

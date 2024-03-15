@@ -12,6 +12,7 @@ public class BHealth : MonoBehaviour
     [SerializeField] private Sight sight;
     [SerializeField] private LayerMask attack_layer;
     [SerializeField] private GameObject Player;
+    [SerializeField] private Finale_trigger fin;
     private float invinc_time = .5f;
     [SerializeField] private int health = 4;
     private bool invinc = false;
@@ -57,6 +58,7 @@ public class BHealth : MonoBehaviour
 
     private void death()
     {
+        fin.decremenr();
         gameObject.SetActive(false);
     }
 }

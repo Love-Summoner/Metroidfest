@@ -631,7 +631,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Directing, Programming, Art, and Animation
+  m_text: 'Programming, Art, and Animation
 
     Jacob Truelove
 
@@ -647,10 +647,10 @@ MonoBehaviour:
     Enrique Gamboa
 
 
-    Main
-    character Sprite
+    Art
+    and Animation
 
-    Rohita'
+    R'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1305,6 +1305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59711d816faf612488509f5521a66a51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataPersistenceManager: {fileID: 0}
 --- !u!1 &1695741963
 GameObject:
   m_ObjectHideFlags: 0

@@ -1204,3 +1204,27 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 516.454207 seconds.
+  path: Assets/Scenes/MainScene.unity
+  artifactKey: Guid(ccca0742d70ea4e4c951fe4d5b478e11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/MainScene.unity using Guid(ccca0742d70ea4e4c951fe4d5b478e11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '133f4365091f4800192d2aaeedea1348') in 0.002928 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 41.214299 seconds.
+  path: Assets/Scenes/ThanksScene.unity
+  artifactKey: Guid(df871cde51c0e1a49bd67bd151e95379) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/ThanksScene.unity using Guid(df871cde51c0e1a49bd67bd151e95379) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c85b207f77ed04de316d6a244c553e30') in 0.000616 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 26.474348 seconds.
+  path: Assets/Scenes/MainScene.unity
+  artifactKey: Guid(ccca0742d70ea4e4c951fe4d5b478e11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/MainScene.unity using Guid(ccca0742d70ea4e4c951fe4d5b478e11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '89ec1fcd2a6228f53d567d1c92332b93') in 0.000531 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0

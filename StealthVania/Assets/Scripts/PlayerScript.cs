@@ -154,7 +154,6 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
         transform.position = respawnPoint;
         gameObject.SetActive(true);
         health = maxHealth;
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private IEnumerator invincible()

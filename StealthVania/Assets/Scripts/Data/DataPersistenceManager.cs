@@ -33,7 +33,9 @@ public class DataPersistenceManager : MonoBehaviour
     
     public void NewGame()
     {
-        this.gameData = new GameData();
+        this.gameData.progress = 0;
+        this.gameData.respawnx = 0;
+        this.gameData.respawny = 0;
     }
 
     public void LoadGame()
@@ -59,11 +61,9 @@ public class DataPersistenceManager : MonoBehaviour
     public bool hasSave()
     {
         this.gameData = dataHandler.Load();
-        if(this.gameData == null)
-        {
-            return false;
-        }
-        return true;
+
+        Debug.Log(this.gameData.progress);
+        return !(this.gameData.progress == 0);
     }
 
     public void SaveGame()

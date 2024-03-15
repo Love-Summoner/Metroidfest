@@ -9,7 +9,7 @@ enum Phase
 public class BHealth : MonoBehaviour
 {
     [SerializeField] private Collider2D Basic_hurt;
-    [SerializeField] private BSight sight;
+    [SerializeField] private Sight sight;
     [SerializeField] private LayerMask attack_layer;
     [SerializeField] private GameObject Player;
     private float invinc_time = .5f;

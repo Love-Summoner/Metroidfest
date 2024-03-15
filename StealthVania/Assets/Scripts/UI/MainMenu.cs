@@ -10,27 +10,6 @@ public class MainMenu : MonoBehaviour
     public static bool newgame = false;
     [SerializeField] private DataPersistenceManager dataPersistenceManager;
     // Start is called before the first frame update
-    void Start()
-    {
-        if(SceneManager.GetActiveScene().name == "MainMenu"  && !File.Exists("Spawn.txt"))
-        {
-            GameObject conButton = GameObject.Find("Continue Button (Legacy)");
-            Button button = conButton.GetComponent<Button>();
-            if(!dataPersistenceManager.hasSave())
-                button.enabled = false;
-            Color color = Color.white;
-            color.g = .5f;
-            color.b = .5f;
-            color.r = .5f;
-            conButton.GetComponent<Image>().color = color;
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void NewGame()
     {

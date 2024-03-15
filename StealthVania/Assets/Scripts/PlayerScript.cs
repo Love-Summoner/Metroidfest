@@ -151,7 +151,10 @@ public class PlayerScript : MonoBehaviour, IDataPersistence
     private void Death()
     {
         gameObject.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        transform.position = respawnPoint;
+        gameObject.SetActive(true);
+        health = maxHealth;
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private IEnumerator invincible()
